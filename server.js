@@ -1,14 +1,10 @@
-import express from "express";
-import { v4 as uuidv4 } from "uuid";
-import jwt from "jsonwebtoken";
-import { registerUser } from "./userController.js";
-import { verifyToken } from "./authMiddleware.js";
+const express = require("express");
+const { v4: uuidv4 } = require("uuid");
+const jwt = require("jsonwebtoken");
+const { verifyToken } = require("./authMiddleware.js");
 const cors = require("cors");
 const app = express();
-const port = 3000;
-
-const { registerUser } = require("./userController");
-import jwt from "jsonwebtoken";
+const port = 3001;
 
 app.use(cors());
 app.use(express.json());
@@ -20,11 +16,11 @@ const jwtSecret = "seguro";
 const users = [];
 
 // Ruta POST para crear un nuevo usuario
-app.post("/users", (req, res, next) => {
+app.post("/register", (req, res, next) => {
   const { body = {} } = req;
   const user = {
     id: uuidv4(),
-    lastname: body.lastname,
+    email: body.email,
     password: body.password,
   };
   users.push(user);

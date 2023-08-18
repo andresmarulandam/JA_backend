@@ -1,8 +1,8 @@
-import jwt from "jsonwebtoken";
+const jwt = require("jsonwebtoken");
 
 const jwtSecret = "seguro";
 
-export function verifyToken(req, res, next) {
+function verifyToken(req, res, next) {
   const token = req.header("Authorization");
   if (!token) {
     return res.status(401).json({ message: "Token no proporcionado" });
@@ -17,3 +17,7 @@ export function verifyToken(req, res, next) {
     res.status(401).json({ message: "Token inválido" });
   }
 }
+
+module.exports = {
+  verifyToken,
+};
