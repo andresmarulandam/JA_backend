@@ -3,12 +3,14 @@ import { v4 as uuidv4 } from "uuid";
 import jwt from "jsonwebtoken";
 import { registerUser } from "./userController.js";
 import { verifyToken } from "./authMiddleware.js";
+const cors = require("cors");
 const app = express();
-const port = 3000; // Cambia al puerto que prefieras
+const port = 3000;
 
 const { registerUser } = require("./userController");
 import jwt from "jsonwebtoken";
 
+app.use(cors());
 app.use(express.json());
 
 // Datos de ejemplo
